@@ -20,7 +20,7 @@ CREATE TABLE keeps(
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE vaults(
-  Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   CreatorId VARCHAR(255) NOT NULL,
   Name VARCHAR(50) COMMENT 'Name of Vault' NOT NULL,
   Description VARCHAR(500) COMMENT 'Description of Vault' NOT NULL,
@@ -43,6 +43,11 @@ SELECT *
 FROM keeps
 JOIN accounts creator ON keeps.CreatorId = creator.id
 WHERE keeps.id = 1;
+
+SELECT *
+FROM vaults
+JOIN accounts creator ON vaults.CreatorId = creator.id 
+WHERE vaults.Id = 2;";
 
 UPDATE keeps
 SET

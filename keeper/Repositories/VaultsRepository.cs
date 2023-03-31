@@ -18,5 +18,19 @@ namespace keeper.Repositories
       vaultData.Id = id;
       return vaultData;
     }
+
+    internal Vault GetVaultById(int id)
+    {
+        string sql = @"
+        SELECT *
+        FROM vaults
+        JOIN accounts creator ON vaults.CreatorId = creator.id
+        WHERE vaults.Id = @id;";
+        Vault vault = _db.Query<Vault, Profile, Vault>(sql, (vault, creator) => {
+            vault.Creator = creator;
+            return vault;
+        }, new {id}).FirstOrDefault();
+        return vault;
+    }
   }
 }

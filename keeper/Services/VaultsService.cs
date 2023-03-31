@@ -11,5 +11,12 @@ namespace keeper.Services
       Vault vault = _repo.CreateVault(vaultData);
       return vault;
     }
+
+    internal Vault GetVaultById(int id)
+    {
+     Vault vault = _repo.GetVaultById(id);
+     if (vault == null) throw new Exception($"No found vault at ID location: {id}");
+     return vault;
+    }
   }
 }
