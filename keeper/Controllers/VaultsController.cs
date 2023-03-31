@@ -33,7 +33,7 @@ namespace keeper.Controllers
         try 
         {
          Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-         Vault vault = _vaultsService.GetVaultById(id);
+         Vault vault = _vaultsService.GetVaultById(id, userInfo?.Id);
          return Ok(vault);
         }
         catch (Exception e)
@@ -41,8 +41,38 @@ namespace keeper.Controllers
           return BadRequest(e.Message);
         }
     }
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Vault>> UpdateVault([FromBody] Vault updateData, int id){
+        try 
+        {
+          Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+          updateData.CreatorId = userInfo.Id;
+          updateData.Id = id;
+          Vault vault = _vaultsService.UpdateVault(updateData);
+          return Ok(vault);
+        }
+        catch (Exception e)
+        {
+          return BadRequest(e.Message);
+        }
+    }
+    [HttpDelete("{id}")]
+    [Authorize]
 
-
+    public async Task<ActionResult<string>>
+    DeleteVault(int id){
+        try 
+        {
+          Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+          string message = _vaultsService.DeleteVault(id, userInfo.Id);
+          return Ok(message);
+        }
+        catch (Exception e)
+        {
+          return BadRequest(e.Message);
+        }
+    }
 
 
 

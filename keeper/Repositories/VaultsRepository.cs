@@ -19,6 +19,14 @@ namespace keeper.Repositories
       return vaultData;
     }
 
+    internal void DeleteVault(int id)
+    {
+      string sql = @"
+      DELETE FROM vaults
+      WHERE id = @id;";
+      _db.Execute(sql, new {id});
+    }
+
     internal Vault GetVaultById(int id)
     {
         string sql = @"
@@ -31,6 +39,19 @@ namespace keeper.Repositories
             return vault;
         }, new {id}).FirstOrDefault();
         return vault;
+    }
+
+    internal int UpdateVault(Vault updateData)
+    {
+        string sql = @"
+        UPDATE vaults
+        SET
+        Name = @Name,
+        Description = @Description,
+        IsPrivate = @IsPrivate
+        WHERE vaults.id = @id;";
+            int rows = _db.Execute(sql, updateData);
+            return rows; 
     }
   }
 }
