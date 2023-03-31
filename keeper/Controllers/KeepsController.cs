@@ -44,11 +44,30 @@ namespace keeper.Controllers
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Keep> GetKeepById(int id)
+    // TODO FIX IF GIVES PROBLEMS?? 
+    public async Task<ActionResult<Keep>> GetKeepById(int id)
     {
+        try
+        {
+         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+          Keep keep = _keepsService.GetKeepById(id, userInfo?.Id);
+          return Ok(keep);
+        }
+        catch (Exception e)
+        {
+          return BadRequest(e.Message);
+        }
+    }
+
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Keep>> UpdateKeep([FromBody] Keep updateData, int id){
         try 
         {
-          Keep keep = _keepsService.GetKeepById(id);
+          Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+          updateData.CreatorId = userInfo.Id;
+          updateData.Id = id;
+          Keep keep = _keepsService.UpdateKeep(updateData);
           return Ok(keep);
         }
         catch (Exception e)

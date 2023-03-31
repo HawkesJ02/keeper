@@ -47,5 +47,21 @@ List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keeps, creator) => {
 }).ToList();
 return keeps;
     }
+
+    internal int UpdateKeep(Keep updateData)
+    {
+      string sql = @"
+UPDATE keeps
+SET
+Name = @Name,
+Description = @Description,
+Img = @Img,
+Views = @Views
+WHERE keeps.id = @id;";
+      int rows = _db.Execute(sql, updateData);
+      return rows;
+    }
   }
+
+
 }

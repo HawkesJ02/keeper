@@ -33,6 +33,14 @@ FROM keeps
 JOIN accounts creator ON keeps.CreatorId = creator.id
 WHERE keeps.id = 1;
 
+UPDATE keeps
+SET
+Name = 'wuh',
+Description = 'wuvly',
+Img = 'https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+Views = 0
+WHERE keeps.id = 6;
+
 
 INSERT INTO keeps
 (`Name`, `Description`, `Img`, `CreatorId` )
