@@ -8,6 +8,9 @@ namespace keeper.Models
     public string Img { get; set; }
     public int Views { get; set; }
     public string CreatorId { get; set; }
+
+    public int Kept { get; set; }
+    // NOTE This may give me trouble later, check back when possible ^^^ 
     public Profile Creator { get; set; }
     }
 }

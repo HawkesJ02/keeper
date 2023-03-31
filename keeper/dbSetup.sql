@@ -13,6 +13,7 @@ CREATE TABLE keeps(
   Description VARCHAR(500) COMMENT 'Description of Keep' NOT NULL,
   Img VARCHAR(500) COMMENT "Keep's Image URL",
   Views INT NOT NULL DEFAULT 0,
+  Kept INT NOT NULL DEFAULT 0, 
   CreatorId VARCHAR(255) NOT NULL,
 
   FOREIGN KEY (CreatorId) REFERENCES accounts(id) ON DELETE CASCADE
@@ -27,6 +28,10 @@ SELECT *
 FROM keeps
 JOIN accounts creator ON keeps.CreatorId = creator.id GROUP BY keeps.id;
 
+SELECT *
+FROM keeps
+JOIN accounts creator ON keeps.CreatorId = creator.id
+WHERE keeps.id = 1;
 
 
 INSERT INTO keeps

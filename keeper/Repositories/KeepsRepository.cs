@@ -20,6 +20,21 @@ namespace keeper.Repositories
     return keepData; 
     }
 
+    internal Keep GetKeepById(int id)
+    {
+      string sql = @"
+    SELECT *
+    FROM keeps
+    JOIN accounts creator ON keeps.CreatorId = creator.id
+    WHERE keeps.id = @id;";
+    Keep keep = _db.Query<Keep, Profile, Keep>(sql, (keep, creator)
+    => {
+        keep.Creator = creator;
+        return keep;
+    }, new {id}).FirstOrDefault();
+    return keep;
+    }
+
     internal List<Keep> GetKeeps()
     {
       string sql = @"

@@ -13,6 +13,13 @@ namespace keeper.Services
       return keep;
     }
 
+    internal Keep GetKeepById(int id)
+    {
+      Keep keep = _repo.GetKeepById(id);
+      if (keep == null) throw new Exception($"No found Keep at ID location {id}");
+      return keep;
+    }
+
     internal List<Keep> GetKeeps()
     {
       List<Keep> keeps = _repo.GetKeeps();
