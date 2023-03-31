@@ -42,6 +42,10 @@ Views = 0
 WHERE keeps.id = 6;
 
 
+DELETE FROM keeps
+WHERE id = 6;
+
+
 INSERT INTO keeps
 (`Name`, `Description`, `Img`, `CreatorId` )
 VALUES

@@ -13,6 +13,15 @@ namespace keeper.Services
       return keep;
     }
 
+    internal string DeleteKeep(int id, string userId)
+    {
+      Keep keep = _repo.GetKeepById(id);
+      if (keep.CreatorId != userId) throw new Exception($"Cannot delete keep if you are not the creator of keep at ID location: {id}");
+      if (keep == null) throw new Exception ("This Keep simply does not exist, I assure you I promise.");
+      _repo.DeleteKeep(id);
+      return $"Removed Keep!";
+    }
+
     internal Keep GetKeepById(int id, string userId)
     {
       Keep keep = _repo.GetKeepById(id);
