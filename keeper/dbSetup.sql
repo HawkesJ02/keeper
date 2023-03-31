@@ -19,7 +19,18 @@ CREATE TABLE keeps(
   FOREIGN KEY (CreatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
+CREATE TABLE vaults(
+  Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  CreatorId VARCHAR(255) NOT NULL,
+  Name VARCHAR(50) COMMENT 'Name of Vault' NOT NULL,
+  Description VARCHAR(500) COMMENT 'Description of Vault' NOT NULL,
+  IsPrivate BOOLEAN NOT NULL COMMENT 'Determines if shown to all users or the active logged in user' DEFAULT  false,
 
+  FOREIGN KEY (CreatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+DROP TABLE vaults;
+-- USE TO DEMOLISH FOREVER THE VAULTS TABLE IF NEEDED >:) OTHERWISE, do NOT HIT THIS BUTTON
 
 DROP TABLE keeps;
 -- USE TO NUKE THE DARN KEEPS TABLE IF NEEDED :) OTHERWISE, do NOT HIT THIS BUTTON
@@ -55,4 +66,5 @@ INSERT INTO keeps
 (`Name`, `Description`, `Img`, `CreatorId` )
 VALUES
 ('KITTEN', 'His soul is lit afire, let us hope you are not the target of his gaze lest thou feels the scrouge of the one they call kitten','https://images.unsplash.com/photo-1535467487981-c86a98db6b9c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80','64233077a1188ee878fee3ca' )
+
 
