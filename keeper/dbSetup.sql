@@ -29,6 +29,17 @@ CREATE TABLE vaults(
   FOREIGN KEY (CreatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
+CREATE TABLE vaultkeeps(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  CreatorId VARCHAR(255) NOT NULL,
+  VaultId INT NOT NULL,
+  KeepId INT NOT NULL,
+
+  FOREIGN KEY (CreatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (VaultId) REFERENCES vaults(id) ON DELETE CASCADE,
+  FOREIGN KEY (KeepId) REFERENCES keeps(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
 DROP TABLE vaults;
 -- USE TO DEMOLISH FOREVER THE VAULTS TABLE IF NEEDED >:) OTHERWISE, do NOT HIT THIS BUTTON
 
@@ -47,7 +58,7 @@ WHERE keeps.id = 1;
 SELECT *
 FROM vaults
 JOIN accounts creator ON vaults.CreatorId = creator.id 
-WHERE vaults.Id = 2;";
+WHERE vaults.Id = 2;
 
 UPDATE keeps
 SET
@@ -60,6 +71,11 @@ WHERE keeps.id = 6;
 
 DELETE FROM keeps
 WHERE id = 6;
+
+INSERT INTO vaultkeeps
+(`CreatorId`, `VaultId`, `KeepId`)
+VALUES
+('64233077a1188ee878fee3ca', '1', '1');
 
 
 INSERT INTO keeps
