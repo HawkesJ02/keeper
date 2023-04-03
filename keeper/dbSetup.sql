@@ -7,6 +7,13 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
+-- CREATE TABLE IF NOT EXIST profiles(
+--   id VARCHAR(255) NOT NULL,
+--   Name(255) NOT NULL,
+--   Picture(255) NOT NULL,
+--   ProfileKeeps
+-- )
+
 CREATE TABLE keeps(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Name VARCHAR(50) COMMENT 'Name of Keep' NOT NULL,
@@ -68,11 +75,11 @@ FROM vaultkeeps
 JOIN accounts creator ON vaultkeeps.CreatorId = creator.id
 JOIN vaults ON vaultkeeps.VaultId = vaults.id
 JOIN keeps ON vaultkeeps.KeepId = keeps.id
-WHERE vaultkeeps.VaultId = @id;
+WHERE vaultkeeps.VaultId = 18;
 
 SELECT * 
 FROM accounts
-WHERE accounts.picture = https://s.gravatar.com/avatar/0b5b92e432a208dea18ff96233675b3b?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fpi.png;
+WHERE ;
 
 UPDATE keeps
 SET

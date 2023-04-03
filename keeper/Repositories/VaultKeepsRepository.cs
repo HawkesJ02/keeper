@@ -21,13 +21,13 @@ namespace keeper.Repositories
 
     internal VaultKeep GetVaultKeepsById(int id)
     {
-      string sql = @"
+    string sql = @"
     SELECT *
     FROM vaultkeeps
     JOIN accounts creator ON vaultkeeps.CreatorId = creator.id
     JOIN vaults ON vaultkeeps.VaultId = vaults.id
     JOIN keeps ON vaultkeeps.KeepId = keeps.id
-    WHERE vaultkeeps.VaultId = @id;";
+    WHERE vaults.id = @id;";
       VaultKeep vaultKeep = _db.Query<VaultKeep,Vault, Profile, VaultKeep>(sql, (vaultKeep,vault, creator) => {
         vaultKeep.Creator = creator;
         return vaultKeep;

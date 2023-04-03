@@ -82,7 +82,7 @@ namespace keeper.Controllers
     try 
     {
       Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-      VaultKeep vaultKeep = _vaultkeepsService.GetVaultKeepsById(id, userInfo?.Id);
+      VaultKeep vaultKeep = _vaultkeepsService.GetVaultKeepsById(id);
       return Ok(vaultKeep);
     }
     catch (Exception e)
