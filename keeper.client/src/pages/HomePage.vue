@@ -3,13 +3,14 @@
     <section class="bricky">
       <div v-for="k in keeps">
         <KeepsComponent :keep="k" />
+
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { watchEffect } from "vue";
 import { AppState } from "../AppState";
 import { computed } from "vue";
 import { logger } from "../utils/Logger";
@@ -17,7 +18,7 @@ import Pop from "../utils/Pop";
 import { keepsService } from "../services/KeepsService"
 export default {
   setup() {
-    onMounted(() => {
+    watchEffect(() => {
       getKeeps()
     })
     async function getKeeps() {

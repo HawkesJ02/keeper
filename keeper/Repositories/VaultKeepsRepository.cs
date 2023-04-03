@@ -32,17 +32,22 @@ namespace keeper.Repositories
     internal List<VaultKeep> GetVaultKeepsById(int id)
     {
     string sql = @"
-    SELECT *
+    SELECT 
+    vaultkeeps*,
+    keeps*
+    accounts*,
     FROM vaultkeeps
-    JOIN accounts creator ON vaultkeeps.CreatorId = creator.id
-    JOIN vaults ON vaultkeeps.VaultId = vaults.id
+    JOIN accounts creator ON keeps.CreatorId = creator.id
     JOIN keeps ON vaultkeeps.KeepId = keeps.id
     WHERE vaultkeeps.VaultId = @id;";
       // ERROR FROM THIS LINE DOWN
-      List<VaultKeep> vaultKeep = _db.Query<VaultKeep, Profile, VaultKeep>(sql, (vaultKeep, creator) => {
-        return vaultKeep;
-      }, new{id}).ToList();
-      return vaultKeep;
+      List<VaultKeep> vaultKeeps = _db.Query<VaultKeep,VaultKeepViewModel, Profile, VaultKeepViewModel>(sql,(vk, vkvm, prof) =>
+      {
+        vkvm.vaultKeepId = vk.Id;
+        // vkvm.Creator = prof;
+        return vkvm;
+      }, new {id}).ToList();
+      return vaultKeeps;
     }
 
     internal int RemoveVaultKeep(int id)

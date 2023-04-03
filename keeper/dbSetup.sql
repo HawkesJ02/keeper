@@ -77,7 +77,6 @@ WHERE vaults.Id = 2;
 SELECT *
 FROM vaultkeeps
 JOIN accounts creator ON vaultkeeps.CreatorId = creator.id
-JOIN vaults ON vaultkeeps.VaultId = vaults.id
 JOIN keeps ON vaultkeeps.KeepId = keeps.id
 WHERE vaultkeeps.VaultId = 18;
 

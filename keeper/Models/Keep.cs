@@ -13,4 +13,10 @@ namespace keeper.Models
     // NOTE This may give me trouble later, check back when possible ^^^ 
     public Profile Creator { get; set; }
     }
+
+public class VaultKeepViewModel:Keep
+{
+  public int vaultKeepId { get; set; }
+}
+
 }
