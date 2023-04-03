@@ -46,6 +46,9 @@ DROP TABLE vaults;
 DROP TABLE keeps;
 -- USE TO NUKE THE DARN KEEPS TABLE IF NEEDED :) OTHERWISE, do NOT HIT THIS BUTTON
 
+DROP TABLE vaultkeeps;
+-- I'm raging bro
+
 SELECT *
 FROM keeps
 JOIN accounts creator ON keeps.CreatorId = creator.id GROUP BY keeps.id;
