@@ -63,6 +63,17 @@ FROM vaults
 JOIN accounts creator ON vaults.CreatorId = creator.id 
 WHERE vaults.Id = 2;
 
+SELECT *
+FROM vaultkeeps
+JOIN accounts creator ON vaultkeeps.CreatorId = creator.id
+JOIN vaults ON vaultkeeps.VaultId = vaults.id
+JOIN keeps ON vaultkeeps.KeepId = keeps.id
+WHERE vaultkeeps.VaultId = @id;
+
+SELECT * 
+FROM accounts
+WHERE accounts.picture = https://s.gravatar.com/avatar/0b5b92e432a208dea18ff96233675b3b?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fpi.png;
+
 UPDATE keeps
 SET
 Name = 'wuh',

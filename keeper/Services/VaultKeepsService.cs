@@ -12,10 +12,10 @@ namespace keeper.Services
       return vaultKeep;
     }
 
-    internal VaultKeep GetVaultKeepsById(int id, string userId)
+    internal VaultKeep GetVaultKeepsById(int VaultId, string userId)
     {
-      VaultKeep vaultKeep = _repo.GetVaultKeepsById(id);
-      if (vaultKeep == null) throw new Exception($"No found vaultkeeps at ID location: {id}");
+      VaultKeep vaultKeep = _repo.GetVaultKeepsById(VaultId);
+      if (vaultKeep == null) throw new Exception($"No found vaultkeeps at ID location: {VaultId}");
       return vaultKeep;
     }
   }
