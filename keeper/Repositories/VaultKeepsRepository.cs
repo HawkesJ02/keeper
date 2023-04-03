@@ -19,7 +19,17 @@ namespace keeper.Repositories
       return vaultkeepData;
     }
 
-    internal VaultKeep GetVaultKeepsById(int id)
+    internal VaultKeep GetSingleVaultkeep(int id)
+    {
+     string sql = @"
+     SELECT *
+     FROM vaultkeeps
+     WHERE vaultkeeps.id = @id;";
+     VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new {id}).FirstOrDefault();
+     return vaultKeep;
+    }
+
+    internal List<VaultKeep> GetVaultKeepsById(int id)
     {
     string sql = @"
     SELECT *
@@ -27,12 +37,21 @@ namespace keeper.Repositories
     JOIN accounts creator ON vaultkeeps.CreatorId = creator.id
     JOIN vaults ON vaultkeeps.VaultId = vaults.id
     JOIN keeps ON vaultkeeps.KeepId = keeps.id
-    WHERE vaults.id = @id;";
-      VaultKeep vaultKeep = _db.Query<VaultKeep,Vault, Profile, VaultKeep>(sql, (vaultKeep,vault, creator) => {
-        vaultKeep.Creator = creator;
+    WHERE vaultkeeps.VaultId = @id;";
+      // ERROR FROM THIS LINE DOWN
+      List<VaultKeep> vaultKeep = _db.Query<VaultKeep, Profile, VaultKeep>(sql, (vaultKeep, creator) => {
         return vaultKeep;
-      }, new{id}).FirstOrDefault();
+      }, new{id}).ToList();
       return vaultKeep;
+    }
+
+    internal int RemoveVaultKeep(int id)
+    {
+     string sql = @"
+     DELETE FROM vaultkeeps
+     WHERE id = @id;";
+     int rows = _db.Execute(sql, new {id});
+     return rows;
     }
   }
 }

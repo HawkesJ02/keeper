@@ -7,12 +7,16 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
--- CREATE TABLE IF NOT EXIST profiles(
---   id VARCHAR(255) NOT NULL,
---   Name(255) NOT NULL,
---   Picture(255) NOT NULL,
---   ProfileKeeps
--- )
+CREATE TABLE IF NOT EXISTS profiles(
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  accountId VARCHAR(255) NOT NULL,
+  Name VARCHAR(255) NOT NULL,
+  Picture VARCHAR (255) NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (Name) REFERENCES accounts(name) ON DELETE CASCADE,
+  FOREIGN KEY (Picture) REFERENCES accounts(picture) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
 
 CREATE TABLE keeps(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

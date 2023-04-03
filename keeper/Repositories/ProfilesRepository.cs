@@ -10,8 +10,8 @@ namespace keeper.Repositories
     {
       string sql = @"
       SELECT * 
-      FROM accounts
-      WHERE accounts.id = @id;";
+      FROM profiles
+      WHERE id = @id;";
       Profile profile = _db.Query<Account>(sql).FirstOrDefault();
       return profile;
     }
