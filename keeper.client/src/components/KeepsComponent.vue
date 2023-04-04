@@ -22,7 +22,14 @@
                 laudantium nostrum ratione quas. Dolore omnis error sit deserunt. Quasi error repellat molestiae
                 dignissimos eum consequatur quidem, voluptatem necessitatibus ipsa harum ea, distinctio unde deleniti
                 nobis impedit fugit dicta debitis maiores molestias, ut incidunt voluptas repellendus nam! Quod velit
-                sequi eius cumque enim hic est assumenda eaque!</div>
+                sequi eius cumque enim hic est assumenda eaque!
+                <router-link :to="{ name: 'Profile', params: { creatorId: keep.creator.id } }">
+                  <img class="profile-picture" :src="keep.creator.picture" :alt="keep.creator.name"
+                    :title="keep.creator.name" data-bs-dismiss="modal">
+                </router-link>
+
+              </div>
+
             </div>
           </div>
         </div>
@@ -34,20 +41,30 @@
 
 
 <script>
+import { RouterLink } from "vue-router";
 import { logger } from "../utils/Logger";
 
 
 export default {
   props: { keep: { type: Object, required: true } },
   setup() {
-    return {
-    }
-  }
+    return {};
+  },
+  components: { RouterLink }
 }
 </script>
 
 
-<style lang="scss" scoped>.img-modal {
+<style lang="scss" scoped>
+.img-modal {
   height: 80vh;
   width: 50vw;
-}</style>
+}
+
+.profile-picture {
+  height: 6vh;
+  width: 6vh;
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px black;
+}
+</style>

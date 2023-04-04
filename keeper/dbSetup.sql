@@ -109,7 +109,7 @@ WHERE keeps.id = 6;
 
 
 DELETE FROM keeps
-WHERE id = 6;
+WHERE id = 5;
 
 INSERT INTO vaultkeeps
 (`CreatorId`, `VaultId`, `KeepId`)
