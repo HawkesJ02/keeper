@@ -3,7 +3,6 @@
     <section class="bricky">
       <div v-for="k in keeps">
         <KeepsComponent :keep="k" />
-
       </div>
     </section>
   </div>
@@ -30,7 +29,13 @@ export default {
       }
     }
     return {
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+
+      get_keep_by_id(id) {
+        logger.log(id)
+      }
+
+
     }
   }
 }

@@ -75,8 +75,12 @@
               <input v-model="editable.name" required type="text" class="form-control" id="name" maxlength="20">
               <label for="floatingInput" class="form-label">Name</label>
             </div>
+            <div class="form-floating my-3">
+              <input v-model="editable.Description" required type="text" class="form-control" id="bio">
+              <label for="floatingInput" class="form-label">Description</label>
+            </div>
             <div class="form-floating">
-              <input v-model="editable.Img" required type="text" class="form-control" id="coverImg">
+              <input v-model="editable.imgUrl" required type="text" class="form-control" id="coverImg">
               <label for="floatingInput" class="form-label">Url</label>
             </div>
             <button class="btn bg-danger mt-4" type="submit">Create Vault</button>
@@ -126,7 +130,7 @@ export default {
           const formData = editable.value;
           const vault = await vaultsService.createVault(formData)
         } catch (error) {
-          Logger.error(error)
+          logger.error(error)
           Pop.error(error.message)
         }
       }

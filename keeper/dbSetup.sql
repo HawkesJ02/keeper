@@ -30,6 +30,7 @@ CREATE TABLE vaults(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   CreatorId VARCHAR(255) NOT NULL,
   Name VARCHAR(50) COMMENT 'Name of Vault' NOT NULL,
+  ImgUrl VARCHAR(500) COMMENT 'Image for Vault' DEFAULT "https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
   Description VARCHAR(500) COMMENT 'Description of Vault' NOT NULL,
   IsPrivate BOOLEAN NOT NULL COMMENT 'Determines if shown to all users or the active logged in user' DEFAULT  false,
 

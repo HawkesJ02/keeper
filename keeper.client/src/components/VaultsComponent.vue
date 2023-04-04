@@ -1,9 +1,10 @@
 <template>
   <div class="component">
-    <router-link :to="{ name: 'Vault', params: { Id: vault.Id } }">
+    <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
       <div>
-        <h4>{{ vault.name }}</h4>
+        <img :src="vault.imgUrl" :alt="vault.name" :title="vault.name">
       </div>
+      <h4>{{ vault.name }}</h4>
     </router-link>
   </div>
 </template>

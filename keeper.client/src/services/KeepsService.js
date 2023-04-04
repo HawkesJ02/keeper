@@ -13,6 +13,12 @@ class KeepsService{
     AppState.keeps.push(res.data)
     return res.data
   }
+
+  async get_keep_by_id(id){
+    const res = await api.get('api/keeps/' + id)
+    logger.log('activekeep', res.data)
+    AppState.activekeep = res.data
+  }
 }
 
 export const keepsService = new KeepsService()
