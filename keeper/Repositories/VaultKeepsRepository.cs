@@ -29,26 +29,26 @@ namespace keeper.Repositories
      return vaultKeep;
     }
 
-    internal List<VaultKeep> GetVaultKeepsById(int id)
+internal List<VaultKeepViewModel> GetVaultKeepsById(int id)
     {
-    string sql = @"
-    SELECT 
-    vaultkeeps*,
-    keeps*
-    accounts*,
-    FROM vaultkeeps
-    JOIN accounts creator ON keeps.CreatorId = creator.id
-    JOIN keeps ON vaultkeeps.KeepId = keeps.id
-    WHERE vaultkeeps.VaultId = @id;";
-      // ERROR FROM THIS LINE DOWN
-      List<VaultKeep> vaultKeeps = _db.Query<VaultKeep,VaultKeepViewModel, Profile, VaultKeepViewModel>(sql,(vk, vkvm, prof) =>
-      {
-        vkvm.vaultKeepId = vk.Id;
-        // vkvm.Creator = prof;
-        return vkvm;
-      }, new {id}).ToList();
-      return vaultKeeps;
-    }
+string sql = @"
+SELECT 
+vaultkeeps.*,
+keeps.*,
+accounts.*
+FROM vaultkeeps
+JOIN keeps ON vaultkeeps.KeepId = keeps.id
+JOIN accounts ON keeps.CreatorId = accounts.id
+WHERE vaultkeeps.VaultId = @id;";
+List<VaultKeepViewModel> vaultKeeps = _db.Query<VaultKeep,VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (vk, vkvm, prof) =>
+{ 
+vkvm.vaultKeepId = vk.Id;
+vkvm.Creator = prof;
+return vkvm;
+}, new {id}).ToList();
+ return vaultKeeps;
+}
+
 
     internal int RemoveVaultKeep(int id)
     {

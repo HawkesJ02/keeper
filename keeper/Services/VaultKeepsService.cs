@@ -14,14 +14,13 @@ namespace keeper.Services
       return vaultKeep;
     }
 
-    internal List<VaultKeep> GetVaultKeepsById(int VaultId, string userId)
+    internal List<VaultKeepViewModel> GetVaultKeepsById(int VaultId, string userId)
     {
       Vault vault = _vaultsService.GetVaultById(VaultId, userId);
-      List<VaultKeep> vaultKeeps = _repo.GetVaultKeepsById(VaultId);
+      List<VaultKeepViewModel> vaultKeeps = _repo.GetVaultKeepsById(VaultId);
       if (vaultKeeps == null) throw new Exception($"No found vaultkeeps at ID location: {VaultId}");
       return vaultKeeps;
     }
-
     internal VaultKeep GetVaultKeepById(int id){
       VaultKeep vaultkeep = _repo.GetSingleVaultkeep(id);
       return vaultkeep;
