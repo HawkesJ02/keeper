@@ -18,6 +18,11 @@ class VaultsService{
     logger.log('gotten keeps by vault:', res.data)
     AppState.keeps = res.data
   }
+
+  async get_my_vaults(){
+    const res = await api.get('account/vaults')
+    AppState.myVaults = res.data
+  }
 }
 
 export const vaultsService = new VaultsService();

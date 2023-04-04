@@ -18,7 +18,8 @@ import { keepsService } from "../services/KeepsService"
 export default {
   setup() {
     watchEffect(() => {
-      getKeeps()
+      getKeeps();
+      get_keep_by_id("1");
     })
     async function getKeeps() {
       try {
@@ -28,14 +29,18 @@ export default {
         Pop.error(error);
       }
     }
+
+    async function get_keep_by_id(id) {
+      try {
+        await keepsService.get_keep_by_id(id)
+      } catch (error) {
+        logger.log(error)
+        Pop.error(error.message)
+      }
+    }
     return {
       keeps: computed(() => AppState.keeps),
-
-      get_keep_by_id(id) {
-        logger.log(id)
-      }
-
-
+      activekeep: computed(() => AppState.activekeep)
     }
   }
 }

@@ -19,6 +19,10 @@ class KeepsService{
     logger.log('activekeep', res.data)
     AppState.activekeep = res.data
   }
+
+  async delete_keep(id){
+    const res = await api.delete('api/keeps/' + id)
+  }
 }
 
 export const keepsService = new KeepsService()

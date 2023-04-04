@@ -4,6 +4,17 @@
       <img @click="get_keep_by_id(keep.id)" class="img-fluid rounded" :src="keep.img" :alt="keep.name" :title="keep.name"
         data-bs-toggle="modal" data-bs-target="#exampleModal">
       <h4>{{ keep.name }}</h4>
+      <div>
+        <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
+          <img :src="keep.creator.picture" :alt="keep.creator.name" class="profile-picture">
+        </router-link>
+        <div v-if="keep.creatorId == account.id">
+          <button @click="delete_keep(keep.id);" class="btn btn-danger">
+            <i class="mdi mdi-delete" title="Remove Keep">
+            </i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -14,21 +25,37 @@
         <div class="container">
           <div class="row">
             <div class="col-6 p-0">
-              <img class="img-modal img-fluid" :src="activekeep.img" :alt="activekeep.name" :title="activekeep.name">
+              <img class="img-modal img-fluid" :src="activekeep?.img" :alt="activekeep?.name" :title="activekeep?.name">
             </div>
             <div class="col-6">
               <section class="d-flex flex-row">
-                <div>{{ activekeep.views }}</div>
+                <div>{{ activekeep?.views }}</div>
                 <div>SAMPLE</div>
-              </section>
-              <h1>{{ activekeep.name }}</h1>
-              <p>{{ activekeep.description }}</p>
-              <section>
-                <!-- <router-link :to="{ name: 'Profile', params: { creatorId: activekeep?.creatorId } }">
-                  <img :src="activekeep?.creator.picture" :alt="activekeep.creator.name" class="profile-picture">
-                </router-link> -->
+                <!-- <div v-if="activekeep?.creatorId == account.id">
+                  <div><i class="mdi mdi-delete bg-danger rounded" title="delete keep"></i></div>
 
+                </div> -->
               </section>
+              <h1>{{ activekeep?.name }}</h1>
+              <p>{{ activekeep?.description }}</p>
+              <section v-if="activekeep">
+                <!-- <router-link :to="{ name: 'Profile', params: { creatorId: activekeep?.creatorId } }">
+                  <img :src="activekeep?.creator.picture" :alt="activekeep?.creator.name" class="profile-picture">
+                </router-link> -->
+              </section>
+              <div>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" @click="getMyClubs">
+                    Add Keep to Vault
+                  </button>
+                  <ul class="dropdown-menu">
+                    <div v-for="v in myVaults">
+                      <AddToVaultButton :vault="v" />
+                    </div>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +91,17 @@ export default {
         }
       },
 
-      activekeep: computed(() => AppState.activekeep)
+      async delete_keep(id) {
+        try {
+          await keepsService.delete_keep(id)
+        } catch (error) {
+          logger.log(error)
+          Pop.error(error)
+        }
+      },
+
+      activekeep: computed(() => AppState.activekeep),
+      account: computed(() => AppState.account)
     };
   },
   components: { RouterLink }
