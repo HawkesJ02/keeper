@@ -56,6 +56,20 @@ List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keeps, creator) => {
 return keeps;
     }
 
+   internal List<Keep> GetByProfileId(string id)
+    {
+    string sql = @"
+    SELECT *
+    FROM keeps
+    JOIN accounts creator ON keeps.CreatorId = creator.id
+    WHERE keeps.CreatorId = @id;";
+    List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keeps, creator) => {
+      keeps.Creator = creator;
+      return keeps;
+    }, new {id}).ToList();
+    return keeps; 
+    }
+
     internal int UpdateKeep(Keep updateData)
     {
       string sql = @"

@@ -8,4 +8,5 @@ public class Profile
 public class Account : Profile 
 {
   public string Email { get; set; }
+  public string CoverImg { get; set;}
 }

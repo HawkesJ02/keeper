@@ -9,10 +9,12 @@ namespace keeper.Repositories
     internal Profile GetProfileById(string id)
     {
       string sql = @"
-      SELECT * 
+      SELECT
+      profiles.*
       FROM profiles
-      WHERE id = @id;";
-      Profile profile = _db.Query<Account>(sql).FirstOrDefault();
+      JOIN accounts ON profiles.accountId = accounts.id
+      WHERE accountId = @id;";
+      Profile profile = _db.Query<Profile>(sql).FirstOrDefault();
       return profile;
     }
   }

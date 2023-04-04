@@ -10,12 +10,8 @@ CREATE TABLE IF NOT EXISTS accounts(
 CREATE TABLE IF NOT EXISTS profiles(
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   accountId VARCHAR(255) NOT NULL,
-  Name VARCHAR(255) NOT NULL,
-  Picture VARCHAR (255) NOT NULL,
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
-  FOREIGN KEY (Name) REFERENCES accounts(name) ON DELETE CASCADE,
-  FOREIGN KEY (Picture) REFERENCES accounts(picture) ON DELETE CASCADE
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE keeps(
@@ -51,6 +47,11 @@ CREATE TABLE vaultkeeps(
   FOREIGN KEY (KeepId) REFERENCES keeps(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
+SELECT
+accounts.*
+FROM accounts
+WHERE id = "641b6f0d34e35a61a9d85ebd";
+
 DROP TABLE vaults;
 -- USE TO DEMOLISH FOREVER THE VAULTS TABLE IF NEEDED >:) OTHERWISE, do NOT HIT THIS BUTTON
 
@@ -59,6 +60,9 @@ DROP TABLE keeps;
 
 DROP TABLE vaultkeeps;
 -- I'm raging bro
+
+DROP TABLE profiles;
+-- use when needed, great power
 
 SELECT *
 FROM keeps
@@ -83,6 +87,17 @@ WHERE vaultkeeps.VaultId = 18;
 SELECT * 
 FROM accounts
 WHERE ;
+
+SELECT
+profiles.*
+FROM profiles
+JOIN accounts ON profiles.accountId = accounts.id
+WHERE accountId = "641b6f0d34e35a61a9d85ebd";
+
+SELECT *
+FROM keeps
+JOIN accounts creator ON keeps.CreatorId = creator.id
+WHERE keeps.CreatorId = "64233077a1188ee878fee3ca";
 
 UPDATE keeps
 SET
