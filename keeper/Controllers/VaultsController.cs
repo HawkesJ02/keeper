@@ -52,7 +52,7 @@ namespace keeper.Controllers
           Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
           updateData.CreatorId = userInfo.Id;
           updateData.Id = id;
-          Vault vault = _vaultsService.UpdateVault(updateData);
+          Vault vault = _vaultsService.UpdateVault(updateData, userInfo?.Id);
           return Ok(vault);
         }
         catch (Exception e)

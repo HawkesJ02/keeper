@@ -29,8 +29,8 @@ class KeepsService{
     logger.log('Attempting to make vaultkeep!', res.data)
   }
 
-  async increase_kept(keepData){
-    const res = await api.post('api/keeps/' + keepData.keepId + '/kept', keepData)
+  async increase_kept({id, Kept}){
+    const res = await api.post('api/keeps/' + id + '/kept', {id, Kept})
     logger.log('Kept increase??', res.data)
   }
 }

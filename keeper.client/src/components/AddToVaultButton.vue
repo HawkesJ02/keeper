@@ -31,10 +31,9 @@ export default {
 
       },
       async increase_kept(id) {
-        var keepData = this.activekeep
-        keepData.keepId = id
-        keepData.kept = keepData.kept + 1;
-        await keepsService.increase_kept(keepData)
+        var id = id
+        var Kept = this.activekeep.kept + 1;
+        await keepsService.increase_kept({ id, Kept })
       }
     }
   }

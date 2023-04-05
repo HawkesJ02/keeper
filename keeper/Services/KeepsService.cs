@@ -44,13 +44,15 @@ namespace keeper.Services
      return updateData;
     }
 
-    internal Keep UpdateKeep(Keep updateData)
+    internal Keep UpdateKeep(Keep updateData, string userId)
     {
       Keep originkeep = this.GetKeepById(updateData.Id, updateData.CreatorId);
+      if(originkeep.CreatorId != userId) throw new Exception("Get outta here.");
       originkeep.Name = updateData.Name != null ? updateData.Name : originkeep.Name;
       originkeep.Description = updateData.Description != null ? updateData.Description : originkeep.Description;
       originkeep.Img = updateData.Img != null ? updateData.Img: originkeep.Img;
       _repo.UpdateKeep(originkeep);
+      
       return originkeep;
     }
   }

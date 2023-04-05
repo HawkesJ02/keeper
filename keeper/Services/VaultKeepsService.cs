@@ -3,13 +3,15 @@ namespace keeper.Services
   public class VaultKeepsService
   {
     private readonly VaultKeepsRepository _repo;
+    private readonly VaultsRepository _vrepo;
     private readonly VaultsService _vaultsService;
     public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService){
         _repo = repo;
         _vaultsService = vaultsService;
     }
-    internal VaultKeep CreateVaultKeep(VaultKeep vaultkeepData)
+    internal VaultKeep CreateVaultKeep(VaultKeep vaultkeepData, string userId)
     {
+      if(vaultkeepData.CreatorId != userId) throw new Exception("NO.");
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultkeepData);
       return vaultKeep;
     }

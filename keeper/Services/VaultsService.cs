@@ -30,9 +30,10 @@ namespace keeper.Services
      return vault;
     }
 
-    internal Vault UpdateVault(Vault updateData)
+    internal Vault UpdateVault(Vault updateData, string userId)
     {
       Vault originvault = this.GetVaultById(updateData.Id, updateData.CreatorId);
+      if(originvault.CreatorId != userId) throw new Exception("Not your vault to edit");
       originvault.Name = updateData.Name != null ? updateData.Name : originvault.Name;
       originvault.Description = updateData.Description != null ? updateData.Description : originvault.Description;
       _repo.UpdateVault(originvault);
