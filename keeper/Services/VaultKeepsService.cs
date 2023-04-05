@@ -3,15 +3,22 @@ namespace keeper.Services
   public class VaultKeepsService
   {
     private readonly VaultKeepsRepository _repo;
-    private readonly VaultsRepository _vrepo;
     private readonly VaultsService _vaultsService;
-    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService){
+
+    private readonly KeepsService _keepsService;
+    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService, KeepsService keepsService){
         _repo = repo;
         _vaultsService = vaultsService;
+        _keepsService = keepsService;
     }
     internal VaultKeep CreateVaultKeep(VaultKeep vaultkeepData, string userId)
     {
-      if(vaultkeepData.CreatorId != userId) throw new Exception("NO.");
+      Vault vault = _vaultsService.GetVaultById(vaultkeepData.VaultId, userId);
+      if(vault == null || vault.CreatorId != userId) throw new Exception("Bad Request, dummy");
+      Keep keep = _keepsService.GetKeepById(vaultkeepData.KeepId, userId);
+      if(keep == null) throw new Exception("Your silly, billy");
+      keep.Kept = keep.Kept + 1; 
+      if(keep != null)_keepsService.UpdateKept(keep);
       VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultkeepData);
       return vaultKeep;
     }

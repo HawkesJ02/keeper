@@ -9,10 +9,10 @@
         <label for="picture" class="form-label">Picture</label>
         <input v-model="editable.picture" type="url" class="form-control" id="picture">
       </div>
-      <!-- <div class="mb-3">
+      <div class="mb-3">
         <label for="coverImg" class="form-label">CoverImg</label>
         <input v-model="editable.coverImg" type="url" class="form-control" id="coverImg">
-      </div> -->
+      </div>
       <button class="btn btn-secondary" type="submit">Save</button>
     </form>
 
@@ -20,7 +20,8 @@
 
     <div class="row">
       <div class="d-flex card my-3 text-center">
-        <img
+        <img v-if="account.coverImg" :src="account.coverImg" alt="" class="cover-image">
+        <img v-else
           src="https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
           alt="" class="cover-image">
         <img :src="account.picture" alt="" class="img-fluid profile-picture center">
@@ -102,6 +103,9 @@ export default {
       get_profile_by_id();
       get_keeps_by_profile();
       get_vaults_by_profile();
+      if (AppState.account.id) {
+        editable.value = { ...AppState.account }
+      }
     })
 
     onUnmounted(() => {

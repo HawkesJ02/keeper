@@ -28,11 +28,6 @@ class KeepsService{
     const res = await api.post('api/vaultkeeps', keepData)
     logger.log('Attempting to make vaultkeep!', res.data)
   }
-
-  async increase_kept({id, Kept}){
-    const res = await api.post('api/keeps/' + id + '/kept', {id, Kept})
-    logger.log('Kept increase??', res.data)
-  }
 }
 
 export const keepsService = new KeepsService()

@@ -1,9 +1,10 @@
 <template>
   <div class="component">
     <div>
-      {{ vaults.creator.name }}
+      <!-- {{ vaults.creator.name }} -->
       {{ vaults.name }}
-      <button @click="delete_vault_by_id();"><i class="mdi mdi-delete" title="Delete Vault!"></i></button>
+      <button v-if="account?.id == vaults?.creatorId" @click="delete_vault_by_id();"><i class="mdi mdi-delete"
+          title="Delete Vault!"></i></button>
     </div>
     <div v-for="k in keeps">
       <KeepsComponent :keep="k" />
@@ -16,7 +17,6 @@
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
-import { profilesService } from '../services/ProfilesService.js'
 import Pop from "../utils/Pop";
 import { watchEffect } from "vue";
 import { computed } from "vue";
@@ -33,6 +33,7 @@ export default {
       } catch (error) {
         Pop.error(error.message)
         logger.error(error)
+        router.push({ name: 'Home' })
       }
     }
     async function get_vault_by_id() {
@@ -56,6 +57,7 @@ export default {
     })
     return {
       keeps: computed(() => AppState.keeps),
+      account: computed(() => AppState.account),
       vaults: computed(() => AppState.vaults),
 
       async delete_vault_by_id() {
@@ -63,7 +65,6 @@ export default {
           const id = route.params.id;
           await vaultsService.delete_vault_by_id(id);
           router.push({ name: 'Home' })
-          window.reload();
         } catch (error) {
           Pop.error(error.message)
           logger.error(error)

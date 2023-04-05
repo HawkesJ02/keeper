@@ -1,5 +1,5 @@
 <template>
-  <div class="component">
+  <div class="bricky">
     <div>
       <img @click="get_keep_by_id(keep.id)" class="img-fluid rounded" :src="keep.img" :alt="keep.name" :title="keep.name"
         data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -35,7 +35,9 @@
             <div class="col-6">
               <section class="d-flex flex-row">
                 <div>{{ activekeep?.views }}</div>
+                <div>VIEWS </div>
                 <div>{{ activekeep?.kept }}</div>
+                <div>KEEPS</div>
                 <!-- <div v-if="activekeep?.creatorId == account.id">
                   <div><i class="mdi mdi-delete bg-danger rounded" title="delete keep"></i></div>
 
@@ -136,5 +138,15 @@ export default {
   width: 6vh;
   border-radius: 50%;
   box-shadow: 2px 2px 4px black;
+}
+
+.bricky {
+  columns: 300px;
+  column-gap: .5em;
+
+  &>div {
+    margin-top: .5em;
+    display: inline-block;
+  }
 }
 </style>

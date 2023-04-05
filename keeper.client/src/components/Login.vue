@@ -52,5 +52,7 @@ export default {
 <style lang="scss" scoped>
 .rounder {
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
 </style>

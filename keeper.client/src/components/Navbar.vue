@@ -49,7 +49,7 @@
               <input v-model="editable.Img" required type="text" class="form-control" id="coverImg">
               <label for="floatingInput" class="form-label">Url</label>
             </div>
-            <button class="btn bg-danger mt-4" type="submit">Create Keep</button>
+            <button class="btn bg-danger mt-4" type="submit" data-bs-dismiss="modal">Create Keep</button>
           </form>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -58,7 +58,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -89,7 +88,7 @@
                 Private?
               </label>
             </div>
-            <button class="btn bg-danger mt-4" type="submit">Create Vault</button>
+            <button class="btn bg-danger mt-4" type="submit" data-bs-dismiss="modal">Create Vault</button>
           </form>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -98,7 +97,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -108,6 +106,7 @@
 
 <script>
 import { ref } from "vue"
+import { useRoute, useRouter } from 'vue-router';
 import { AppState } from "../AppState"
 import { computed } from "vue"
 import { keepsService } from "../services/KeepsService"
@@ -118,6 +117,8 @@ import Login from './Login.vue'
 export default {
   setup() {
     const editable = ref({})
+    const route = useRoute()
+    const router = useRouter()
     return {
       editable,
       account: computed(() => AppState.account),
@@ -134,8 +135,14 @@ export default {
       async createVault() {
         try {
           const formData = editable.value;
+          if (formData.IsPrivate == null) {
+            formData.IsPrivate = false
+          }
           logger.log('[FORM DATA]', formData)
           const vault = await vaultsService.createVault(formData)
+          const vaultId = vault.id
+          editable.value = {}
+          router.push(`/vaults/${vaultId}`)
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)

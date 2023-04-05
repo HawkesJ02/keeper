@@ -40,6 +40,7 @@ public class AccountService
     Account original = GetProfile(userId);
     original.Name = editData.Name.Length > 0 ? editData.Name : original.Name;
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
+    original.CoverImg = editData.CoverImg.Length > 0 ? editData.CoverImg : original.CoverImg;
     return _repo.Edit(original);
   }
 

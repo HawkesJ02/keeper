@@ -4,15 +4,16 @@ CREATE TABLE IF NOT EXISTS accounts(
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   name varchar(255) COMMENT 'User Name',
   email varchar(255) COMMENT 'User Email',
-  picture varchar(255) COMMENT 'User Picture'
+  picture varchar(500) COMMENT 'User Picture',
+  coverImg VARCHAR(500) COMMENT 'User CoverImg'
 ) default charset utf8 COMMENT '';
 
-CREATE TABLE IF NOT EXISTS profiles(
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  accountId VARCHAR(255) NOT NULL,
-  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
-) default charset utf8 COMMENT '';
+-- CREATE TABLE IF NOT EXISTS profiles(
+--   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   accountId VARCHAR(255) NOT NULL,
+--   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+--   FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
+-- ) default charset utf8 COMMENT '';
 
 CREATE TABLE keeps(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -64,6 +65,7 @@ DROP TABLE vaultkeeps;
 
 DROP TABLE profiles;
 -- use when needed, great power
+DROP TABLE accounts;
 
 SELECT *
 FROM keeps
