@@ -51,7 +51,7 @@
                 </router-link> -->
               </section>
               <div>
-                <div class="dropdown">
+                <div v-if="account?.name != null" class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                     aria-expanded="false" @click="getMyClubs">
                     Add Keep to Vault
@@ -68,7 +68,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -129,8 +128,8 @@ export default {
 
 <style lang="scss" scoped>
 .img-modal {
-  height: 80vh;
-  width: 50vw;
+  max-height: 80vh;
+  width: auto;
 }
 
 .profile-picture {

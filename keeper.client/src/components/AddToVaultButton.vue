@@ -13,6 +13,7 @@
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
 import { keepsService } from "../services/KeepsService";
+import Pop from "../utils/Pop";
 export default {
   props: {
     vault: { type: Object, required: true }
@@ -27,7 +28,7 @@ export default {
         keepData.vaultId = id
         keepData.keepId = this.activekeep.id
         await keepsService.addKeepToVault(keepData)
-
+        Pop.toast("Added to vault", "success")
       }
     }
   }

@@ -1,5 +1,5 @@
-<template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+<template class="">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <button class="btn specialbutton btn-rounded"> <b>Home</b></button>
@@ -36,6 +36,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="exampleModalLabel">Add Your Keep</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <form @submit.prevent="createKeep()">
             <div class="form-floating">
               <input v-model="editable.name" required type="text" class="form-control" id="name" maxlength="20">
@@ -51,10 +54,6 @@
             </div>
             <button class="btn bg-danger mt-4" type="submit" data-bs-dismiss="modal">Create Keep</button>
           </form>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -69,9 +68,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="exampleModalLabel">Add Your Vault</h2>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <form @submit.prevent="createVault()">
             <div class="form-floating">
-              <input v-model="editable.name" required type="text" class="form-control" id="name" maxlength="20">
+              <input v-model="editable.name" required type="text" class="form-control" id="name" maxlength="50">
               <label for="floatingInput" class="form-label">Name</label>
             </div>
             <div class="form-floating my-3">
@@ -90,10 +93,6 @@
             </div>
             <button class="btn bg-danger mt-4" type="submit" data-bs-dismiss="modal">Create Vault</button>
           </form>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

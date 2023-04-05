@@ -1,10 +1,11 @@
 <template>
   <div class="component">
     <div>
-      <!-- {{ vaults.creator.name }} -->
       {{ vaults.name }}
+      <!-- {{ vaults.creator.name }} -->
       <button v-if="account?.id == vaults?.creatorId" @click="delete_vault_by_id();"><i class="mdi mdi-delete"
           title="Delete Vault!"></i></button>
+      <i v-if="vaults.isPrivate == true" class="mdi mdi-lock"> PRIVATE VAULT </i>
     </div>
     <div v-for="k in keeps">
       <KeepsComponent :keep="k" />
@@ -57,8 +58,8 @@ export default {
     })
     return {
       keeps: computed(() => AppState.keeps),
-      account: computed(() => AppState.account),
       vaults: computed(() => AppState.vaults),
+      account: computed(() => AppState.account),
 
       async delete_vault_by_id() {
         try {
