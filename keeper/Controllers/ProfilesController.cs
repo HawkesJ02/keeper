@@ -45,7 +45,7 @@ namespace keeper.Controllers
         try 
         {
            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-           List<Vault> vaults = _accountsService.GetVaultsByProfileId(id);
+           List<Vault> vaults = _accountsService.GetVaultsByProfileId(id, userInfo?.Id);
            return Ok(vaults);
         }
         catch (Exception e)

@@ -27,6 +27,10 @@ class VaultsService{
     const res = await api.get('account/vaults')
     AppState.myVaults = res.data
   }
+
+  async remove_keep_from_vault(VKID){
+    const res = await api.delete('api/vaultkeeps/' + VKID)
+  }
 }
 
 export const vaultsService = new VaultsService();

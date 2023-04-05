@@ -108,6 +108,11 @@ Img = 'https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?ixlib=
 Views = 0
 WHERE keeps.id = 6;
 
+UPDATE keeps
+SET
+Kept = 1
+WHERE keeps.id = 6;
+
 
 DELETE FROM keeps
 WHERE id = 5;

@@ -27,6 +27,14 @@ export default {
         keepData.vaultId = id
         keepData.keepId = this.activekeep.id
         await keepsService.addKeepToVault(keepData)
+        this.increase_kept(keepData.keepId);
+
+      },
+      async increase_kept(id) {
+        var keepData = this.activekeep
+        keepData.keepId = id
+        keepData.kept = keepData.kept + 1;
+        await keepsService.increase_kept(keepData)
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="component">
+  <div v-if="vault.isPrivate == false || vault.isPrivate == true && vault.creatorId == account.id" class="component">
     <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
       <div>
         <img :src="vault.imgUrl" :alt="vault.name" :title="vault.name">
@@ -7,16 +7,21 @@
       <h4>{{ vault.name }}</h4>
     </router-link>
   </div>
+  <i v-if="vault.isPrivate == true && vault.creatorId == account.id" class="mdi mdi-lock"></i>
 </template>
 
 
 <script>
 import { RouterLink } from "vue-router";
+import { computed } from "vue";
+import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
 export default {
   props: { vault: { type: Object, required: true } },
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { RouterLink }
 }

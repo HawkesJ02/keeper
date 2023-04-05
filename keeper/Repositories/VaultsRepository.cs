@@ -10,9 +10,9 @@ namespace keeper.Repositories
     {
       string sql = @"
       INSERT INTO vaults
-      (`CreatorId`,`Name`, `imgUrl`, `Description`)
+      (`CreatorId`,`Name`, `imgUrl`, `Description`, `IsPrivate`)
       VALUES
-      (@CreatorId, @Name, @imgUrl, @Description);
+      (@CreatorId, @Name, @imgUrl, @Description, @IsPrivate);
       SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, vaultData);
       vaultData.Id = id;

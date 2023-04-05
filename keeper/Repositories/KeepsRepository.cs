@@ -70,6 +70,18 @@ return keeps;
     return keeps; 
     }
 
+    internal int UpdateKept(Keep updateData)
+    {
+      string sql = @"
+UPDATE keeps
+SET
+Kept = @Kept
+WHERE keeps.id = @id;";
+      int rows = _db.Execute(sql, updateData);
+      return rows;
+    }
+
+
     internal int UpdateKeep(Keep updateData)
     {
       string sql = @"
@@ -82,6 +94,11 @@ Views = @Views
 WHERE keeps.id = @id;";
       int rows = _db.Execute(sql, updateData);
       return rows;
+    }
+
+    internal void IncreaseKeptCount(Keep updateData)
+    {
+      throw new NotImplementedException();
     }
   }
 

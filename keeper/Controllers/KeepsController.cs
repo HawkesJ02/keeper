@@ -75,6 +75,22 @@ namespace keeper.Controllers
           return BadRequest(e.Message);
         }
     }
+  
+  
+    [HttpPut("{id}/kept")]
+    public ActionResult<Keep> UpdateKept([FromBody] Keep updateData, int id){
+        try 
+        {
+          updateData.Id = id;
+          Keep keep = _keepsService.UpdateKept(updateData);
+          return Ok(keep);
+        }
+        catch (Exception e)
+        {
+          return BadRequest(e.Message);
+        }
+    }
+
 
 
     [HttpDelete("{id}")]

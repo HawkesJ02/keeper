@@ -23,10 +23,10 @@ namespace keeper.Services
     }
 
     internal Vault GetVaultById(int id, string userId)
-    // TODO Fix to have string userID like keeps!
     {
      Vault vault = _repo.GetVaultById(id);
      if (vault == null) throw new Exception($"No found vault at ID location: {id}");
+     if(vault.CreatorId != userId && vault.IsPrivate == true) throw new Exception("Private vault, just stop please");
      return vault;
     }
 

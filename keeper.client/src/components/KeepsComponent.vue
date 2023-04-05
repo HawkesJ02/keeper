@@ -4,8 +4,10 @@
       <img @click="get_keep_by_id(keep.id)" class="img-fluid rounded" :src="keep.img" :alt="keep.name" :title="keep.name"
         data-bs-toggle="modal" data-bs-target="#exampleModal">
       <h4>{{ keep.name }}</h4>
-      <div>
-        DWAHDH
+      <div v-if="keep.vaultKeepId">
+        <button @click="remove_keep_from_vault(keep.vaultKeepId)" class="btn btn-danger"
+          title="Delete Keep From Vault">GET OUTTA
+          HERE KEEP</button>
       </div>
       <div>
         <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
@@ -33,7 +35,7 @@
             <div class="col-6">
               <section class="d-flex flex-row">
                 <div>{{ activekeep?.views }}</div>
-                <div>SAMPLE</div>
+                <div>{{ activekeep?.kept }}</div>
                 <!-- <div v-if="activekeep?.creatorId == account.id">
                   <div><i class="mdi mdi-delete bg-danger rounded" title="delete keep"></i></div>
 
@@ -79,6 +81,7 @@ import { keepsService } from "../services/KeepsService";
 import { logger } from "../utils/Logger";
 import { computed } from "vue";
 import Pop from "../utils/Pop";
+import { vaultsService } from "../services/VaultsService";
 
 
 export default {
@@ -97,6 +100,15 @@ export default {
       async delete_keep(id) {
         try {
           await keepsService.delete_keep(id)
+        } catch (error) {
+          logger.log(error)
+          Pop.error(error)
+        }
+      },
+
+      async remove_keep_from_vault(VKID) {
+        try {
+          await vaultsService.remove_keep_from_vault(VKID)
         } catch (error) {
           logger.log(error)
           Pop.error(error)

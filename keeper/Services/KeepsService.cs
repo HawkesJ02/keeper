@@ -39,6 +39,11 @@ namespace keeper.Services
       return keeps;
     }
 
+    internal Keep UpdateKept(Keep updateData){
+     _repo.UpdateKept(updateData);
+     return updateData;
+    }
+
     internal Keep UpdateKeep(Keep updateData)
     {
       Keep originkeep = this.GetKeepById(updateData.Id, updateData.CreatorId);

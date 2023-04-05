@@ -83,6 +83,12 @@
               <input v-model="editable.imgUrl" required type="text" class="form-control" id="coverImg">
               <label for="floatingInput" class="form-label">Url</label>
             </div>
+            <div class="form-check">
+              <input v-model="editable.IsPrivate" class="form-check-input" type="checkbox" id="isPrivate">
+              <label class="form-check-label" for="flexCheckDefault">
+                Private?
+              </label>
+            </div>
             <button class="btn bg-danger mt-4" type="submit">Create Vault</button>
           </form>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -128,6 +134,7 @@ export default {
       async createVault() {
         try {
           const formData = editable.value;
+          logger.log('[FORM DATA]', formData)
           const vault = await vaultsService.createVault(formData)
         } catch (error) {
           logger.error(error)

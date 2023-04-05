@@ -49,10 +49,11 @@ public class AccountService
     return keeps;
   }
 
-  internal List<Vault> GetVaultsByProfileId(string id)
+  internal List<Vault> GetVaultsByProfileId(string id, string userId)
   {
     List<Vault> vaults = _vrepo.GetVaultsByProfileId(id);
-    return vaults;
+    List<Vault> filteredvaults = vaults.FindAll(v => v.CreatorId == userId || v.IsPrivate == false);
+    return filteredvaults;
   }
 
   internal List<Vault> GetVaultsByAccountId(string id)
