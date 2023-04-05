@@ -5,6 +5,9 @@
         data-bs-toggle="modal" data-bs-target="#exampleModal">
       <h4>{{ keep.name }}</h4>
       <div>
+        DWAHDH
+      </div>
+      <div>
         <router-link :to="{ name: 'Profile', params: { creatorId: keep.creatorId } }">
           <img :src="keep.creator.picture" :alt="keep.creator.name" class="profile-picture">
         </router-link>

@@ -28,6 +28,23 @@ public class AccountController : ControllerBase
     }
   }
 
+[HttpPut("{id}")]
+[Authorize]
+public async Task<ActionResult<Account>> UpdateAccount([FromBody] Account updateData, string id){
+  try 
+  {
+     Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+     updateData.Id = id;
+     Account account = _accountService.Edit(updateData, id);
+     return Ok(account);
+
+  }
+  catch (Exception e)
+  {
+    return BadRequest(e.Message);
+  }
+}
+
 [HttpGet("vaults")]
 [Authorize]
      public async Task<ActionResult<List<Vault>>>GetVaultsByAccountId(string id){
@@ -42,5 +59,6 @@ public class AccountController : ControllerBase
           return BadRequest(e.Message);
         }
     }
+
 
 }

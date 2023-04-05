@@ -13,6 +13,10 @@ class VaultsService{
     AppState.vaults = res.data
   }
 
+  async delete_vault_by_id(id){
+    const res = await api.delete('api/vaults/' + id)
+  }
+
   async get_keeps_by_vault(id){
     const res = await api.get('api/vaults/' + id + '/keeps')
     logger.log('gotten keeps by vault:', res.data)
