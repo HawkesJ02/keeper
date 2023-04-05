@@ -15,16 +15,18 @@ import { AppState } from "../AppState";
 import { keepsService } from "../services/KeepsService";
 export default {
   props: {
-    vaults: { type: Object, required: true }
+    vault: { type: Object, required: true }
   },
 
   setup() {
     return {
       vaults: computed(() => AppState.myVaults),
-      async addKeepToVault(vaultId) {
-        const keep = this.activekeep
-        keep.VaultId = vaultId
-        await keepsService.addKeepToVault(keep)
+      activekeep: computed(() => AppState.activekeep),
+      async addKeepToVault(id) {
+        const keepData = this.activekeep
+        keepData.vaultId = id
+        keepData.keepId = this.activekeep.id
+        await keepsService.addKeepToVault(keepData)
       }
     }
   }

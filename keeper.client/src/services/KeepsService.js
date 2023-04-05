@@ -23,6 +23,11 @@ class KeepsService{
   async delete_keep(id){
     const res = await api.delete('api/keeps/' + id)
   }
+
+  async addKeepToVault(keepData){
+    const res = await api.post('api/vaultkeeps', keepData)
+    logger.log('Attempting to make vaultkeep!', res.data)
+  }
 }
 
 export const keepsService = new KeepsService()

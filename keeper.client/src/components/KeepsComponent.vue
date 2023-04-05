@@ -101,7 +101,8 @@ export default {
       },
 
       activekeep: computed(() => AppState.activekeep),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      myVaults: computed(() => AppState.myVaults)
     };
   },
   components: { RouterLink }

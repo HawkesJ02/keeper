@@ -19,7 +19,6 @@ export default {
   setup() {
     watchEffect(() => {
       getKeeps();
-      get_keep_by_id("1");
     })
     async function getKeeps() {
       try {
@@ -27,15 +26,6 @@ export default {
       } catch (error) {
         logger.error(error);
         Pop.error(error);
-      }
-    }
-
-    async function get_keep_by_id(id) {
-      try {
-        await keepsService.get_keep_by_id(id)
-      } catch (error) {
-        logger.log(error)
-        Pop.error(error.message)
       }
     }
     return {
