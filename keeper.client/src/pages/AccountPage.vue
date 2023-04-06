@@ -1,5 +1,5 @@
 <template>
-  <div v-if="account" class="container card">
+  <div v-if="account" class="container">
     <form @submit.prevent="edit_account()">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -19,13 +19,14 @@
 
 
     <div class="row">
-      <div class="d-flex card my-3 text-center">
+      <div class="d-flex p-0 card my-3 text-center">
         <img v-if="account.coverImg" :src="account.coverImg" alt="" class="cover-image">
         <img v-else
           src="https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
           alt="" class="cover-image">
         <img :src="account.picture" alt="" class="img-fluid profile-picture center">
         <h1>{{ account.name }}</h1>
+        <!-- <p>{{ vaults.length() }}</p> -->
       </div>
       <section>
         <div>
@@ -135,7 +136,7 @@ export default {
 
 <style scoped>
 .cover-image {
-  height: 50vh;
+  height: 60vh;
   width: 100%;
   object-fit: cover;
   background-attachment: fixed;

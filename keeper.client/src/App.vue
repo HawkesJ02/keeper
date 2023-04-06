@@ -1,5 +1,5 @@
 <template>
-  <header class="shadow sticky-top">
+  <header class="shadow">
     <Navbar />
   </header>
   <main>

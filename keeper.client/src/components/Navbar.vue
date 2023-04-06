@@ -1,38 +1,36 @@
 <template class="">
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light px-3">
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <button class="btn specialbutton btn-rounded"> <b>Home</b></button>
-      </div>
-    </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <!-- <router-link :to="{ name: 'About' }" class="btn text-dark selectable">
-            <b>Create</b><i class="mdi mdi-menu-down"></i>
-          </router-link> -->
-          <button v-if="account.id" data-bs-toggle="modal" data-bs-target="#createkeepModal"
-            class="btn text-dark selectable">
-            <b>Create Keep</b><i class="mdi mdi-menu-down"></i>
+  <div class="container-fluid my-2">
+    <div class="row justify-content-between">
+      <div class="d-flex flex-row col-2 align-items-center">
+        <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+          <div class="d-flex flex-column align-items-center">
+            <button class="btn specialbutton selectable btn-rounded"> <b>Home</b></button>
+          </div>
+        </router-link>
+        <div class="dropdown">
+          <button class="btn specialbutton selectable dropdown-toggle mx-3" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <b>Create</b>
+            <i class="mdi mdi-menu-down"></i>
           </button>
-          <button v-if="account.id" data-bs-toggle="modal" data-bs-target="#createvaultModal"
-            class="btn text-dark selectable">
-            <b>Create Vault</b><i class="mdi mdi-menu-down"></i>
-          </button>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
-    </div>
-  </nav>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a v-if="account.id" data-bs-toggle="modal" data-bs-target="#createkeepModal"
+                class="dropdown-item selectable">Create
+                Keep</a></li>
+            <li><a v-if="account.id" data-bs-toggle="modal" data-bs-target="#createvaultModal"
+                class="dropdown-item selectable" href="#">Create Vault</a></li>
 
+          </ul>
+        </div>
+      </div>
+      <div class="col-1 d-flex justify-content-center">
+        <Login />
+      </div>
+    </div>
+  </div>
   <!-- CREATE KEEP MODAL -->
   <div class="modal fade" id="createkeepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="exampleModalLabel">Add Your Keep</h2>
@@ -64,7 +62,7 @@
 
   <!-- CREATE VAULT MODAL -->
   <div class="modal fade" id="createvaultModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title" id="exampleModalLabel">Add Your Vault</h2>
@@ -155,7 +153,7 @@ export default {
 
 <style scoped>
 .specialbutton {
-  background-color: #e9d8d6;
+  background-color: #fef6f0;
 }
 
 a:hover {
