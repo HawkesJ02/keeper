@@ -13,8 +13,7 @@
       </section>
       <div v-if="keep.vaultKeepId">
         <button @click="remove_keep_from_vault(keep.vaultKeepId)" class="btn btn-danger"
-          title="Delete Keep From Vault">GET OUTTA
-          HERE KEEP</button>
+          title="Delete Keep From Vault">Remove from Vault</button>
       </div>
       <div>
         <!-- 
@@ -22,10 +21,11 @@
           <button @click="delete_keep(keep.id);" class="btn btn-danger">
             <i class="mdi mdi-delete" title="Remove Keep">
             </i>
-          </button>
-        </div> -->
-      </div>
+            <!-- TODO make this work please! -->
+        </button>
+      </div> -->
     </div>
+  </div>
   </div>
 
   <!-- Modal -->
