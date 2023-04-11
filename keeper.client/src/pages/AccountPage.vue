@@ -1,20 +1,24 @@
 <template>
   <div v-if="account" class="container">
-    <form @submit.prevent="edit_account()">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input required v-model="editable.name" type="text" class="form-control" id="name" name="name">
-      </div>
-      <div class="mb-3">
-        <label for="picture" class="form-label">Picture</label>
-        <input v-model="editable.picture" type="url" class="form-control" id="picture">
-      </div>
-      <div class="mb-3">
-        <label for="coverImg" class="form-label">CoverImg</label>
-        <input v-model="editable.coverImg" type="url" class="form-control" id="coverImg">
-      </div>
-      <button class="btn btn-secondary" type="submit">Save</button>
-    </form>
+    <section class="card my-3 p-3">
+      <h3 class="text-center">Edit Account</h3>
+      <form @submit.prevent="edit_account()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input required v-model="editable.name" type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="mb-3">
+          <label for="picture" class="form-label">Picture</label>
+          <input v-model="editable.picture" type="url" class="form-control" id="picture">
+        </div>
+        <div class="mb-3">
+          <label for="coverImg" class="form-label">CoverImg</label>
+          <input v-model="editable.coverImg" type="url" class="form-control" id="coverImg">
+        </div>
+        <button class="btn btn-secondary" type="submit">Save Changes</button>
+      </form>
+    </section>
+
 
 
 
@@ -30,12 +34,14 @@
       </div>
       <section>
         <div>
-          <h1>
-            Vaults
+          <div>
+            <h1 class="text-center card">
+              Vaults
+            </h1>
             <div v-for="v in vaults">
               <VaultsComponent :vault="v" />
             </div>
-          </h1>
+          </div>
         </div>
         <div>
           <h1>

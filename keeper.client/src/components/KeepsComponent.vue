@@ -21,11 +21,10 @@
           <button @click="delete_keep(keep.id);" class="btn btn-danger">
             <i class="mdi mdi-delete" title="Remove Keep">
             </i>
-            <!-- TODO make this work please! -->
         </button>
       </div> -->
+      </div>
     </div>
-  </div>
   </div>
 
   <!-- Modal -->
