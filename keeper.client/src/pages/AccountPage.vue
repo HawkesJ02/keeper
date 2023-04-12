@@ -44,15 +44,19 @@
           </div>
         </div>
         <div>
-          <h1>
-            Keeps
-          </h1>
-          <div v-for="k in keeps">
-            <KeepsComponent :keep="k" />
-          </div>
         </div>
       </section>
     </div>
+  </div>
+  <div class="container py-3 mt-3">
+    <h1>
+      Keeps
+    </h1>
+    <section class="bricky">
+      <div v-for="k in keeps">
+        <KeepsComponent :keep="k" />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -161,5 +165,15 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.bricky {
+  columns: 300px;
+  column-gap: .5em;
+
+  &>div {
+    margin-top: .5em;
+    display: inline-block;
+  }
 }
 </style>
