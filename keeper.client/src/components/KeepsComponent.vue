@@ -16,6 +16,7 @@
           title="Delete Keep From Vault">Remove from Vault</button>
       </div>
       <div>
+
         <!-- TODO Fix keeps comp -->
         <!-- 
         <div v-if="keep.creatorId == account.id">

@@ -1,5 +1,6 @@
 <template>
   <div v-if="profile" class="container card">
+    <!-- TODO fix profile page -->
     <div class="row">
       <div class="d-flex card my-3 text-center">
         <img v-if="profile.coverImg" :src="profile.coverImg" alt="" class="cover-image">
