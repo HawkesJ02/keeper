@@ -9,6 +9,7 @@
           alt="" class="cover-image">
         <img :src="profile.picture" alt="" class="img-fluid profile-picture center">
         <h1>{{ profile.name }}</h1>
+        <!-- TODO fix pls  -->
       </div>
       <section>
         <div>
