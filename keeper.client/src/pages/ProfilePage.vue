@@ -1,8 +1,8 @@
 <template>
-  <div v-if="profile" class="container card">
+  <div v-if="profile" class="container">
     <!-- TODO fix profile page -->
     <div class="row">
-      <div class="d-flex card my-3 text-center">
+      <div class="d-flex card p-0 my-3 text-center">
         <img v-if="profile.coverImg" :src="profile.coverImg" alt="" class="cover-image">
         <img v-else
           src="https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -13,7 +13,8 @@
       </div>
       <section>
         <div>
-          <h1>
+          <h1 class="text-center card">
+            <!-- TODO Vaults Load INCORRECTLY between back and front, improperly called name -->
             Vaults
             <div v-for="v in vaults">
               <VaultsComponent :vault="v" />
