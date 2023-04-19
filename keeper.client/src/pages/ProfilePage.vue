@@ -13,21 +13,21 @@
       </div>
       <section>
         <div>
-          <h1 class="text-center card">
-            <!-- TODO Vaults Load INCORRECTLY between back and front, improperly called name -->
-            Vaults
-            <div v-for="v in vaults">
-              <VaultsComponent :vault="v" />
-            </div>
+          <h1 class="text-center card"> Vaults
           </h1>
+          <div v-for="v in vaults">
+            <VaultsComponent :vault="v" />
+          </div>
         </div>
         <div>
-          <h1>
+          <h1 class="card text-center p-2">
             Keeps
           </h1>
-          <div v-for="k in keeps">
-            <KeepsComponent :keep="k" />
-          </div>
+          <section class="bricky">
+            <div v-for="k in keeps">
+              <KeepsComponent :keep="k" />
+            </div>
+          </section>
         </div>
       </section>
     </div>
@@ -123,8 +123,13 @@ export default {
   margin-right: auto;
 }
 
-.smol-keeps {
-  height: 10vh;
-  width: auto;
+.bricky {
+  columns: 300px;
+  column-gap: .5em;
+
+  &>div {
+    margin-top: .5em;
+    display: inline-block;
+  }
 }
 </style>
