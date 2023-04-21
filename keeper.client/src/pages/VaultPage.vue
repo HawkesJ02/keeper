@@ -1,12 +1,22 @@
 <template>
   <div class="component">
-    <div>
-      {{ vaults.name }}
-      <!-- {{ vaults.creator.name }} -->
-      <button v-if="account?.id == vaults?.creatorId" @click="delete_vault_by_id();"><i class="mdi mdi-delete"
-          title="Delete Vault!"></i></button>
-      <i v-if="vaults.isPrivate == true" class="mdi mdi-lock"> PRIVATE VAULT </i>
+    <div class="container">
+      <div class="row">
+        <h1>
+          {{ vaults.name }}
+        </h1>
+        <h2>
+          {{ vaults.description }}
+        </h2>
+        <div>
+          <!-- {{ vaults.creator.name }} -->
+          <button v-if="account?.id == vaults?.creatorId" @click="delete_vault_by_id();"><i class="mdi mdi-delete"
+              title="Delete Vault!"></i></button>
+          <i v-if="vaults.isPrivate == true" class="mdi mdi-lock"> PRIVATE VAULT </i>
+        </div>
+      </div>
     </div>
+
     <div v-for="k in keeps">
       <KeepsComponent :keep="k" />
     </div>
