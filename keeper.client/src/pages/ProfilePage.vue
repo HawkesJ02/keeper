@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO Finish lower aspects of Profile page -->
   <div v-if="profile" class="container">
     <!-- TODO fix profile page -->
     <div class="row">

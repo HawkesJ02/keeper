@@ -1,4 +1,5 @@
 <template class="">
+  <!-- TODO add logo to center and make sticky-top work correctly -->
   <div class="container-fluid my-2">
     <div class="row justify-content-between">
       <div class="d-flex flex-row col-2 align-items-center">

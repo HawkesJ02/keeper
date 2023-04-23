@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO fix database! trial ended and need to rehook it up -->
   <header class="shadow">
     <Navbar />
   </header>

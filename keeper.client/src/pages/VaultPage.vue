@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO RESTYLE VAULT PAGE  -->
   <div class="component">
     <div class="container">
       <div class="row">
@@ -12,13 +13,13 @@
           <!-- {{ vaults.creator.name }} -->
           <button v-if="account?.id == vaults?.creatorId" @click="delete_vault_by_id();"><i class="mdi mdi-delete"
               title="Delete Vault!"></i></button>
-          <i v-if="vaults.isPrivate == true" class="mdi mdi-lock"> PRIVATE VAULT </i>
+          <i v-if=" vaults.isPrivate == true " class="mdi mdi-lock"> PRIVATE VAULT </i>
         </div>
       </div>
     </div>
 
-    <div v-for="k in keeps">
-      <KeepsComponent :keep="k" />
+    <div v-for=" k  in  keeps ">
+      <KeepsComponent :keep=" k " />
     </div>
   </div>
 </template>
