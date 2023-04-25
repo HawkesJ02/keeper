@@ -17,7 +17,7 @@
       </div>
       <div>
 
-        <!-- TODO Fix keeps comp -->
+        <!-- TODO Fix keeps comp, mostly image streching and try to add the profile on the detailed view of the keep -->
         <!-- 
         <div v-if="keep.creatorId == account.id">
           <button @click="delete_keep(keep.id);" class="btn btn-danger">
